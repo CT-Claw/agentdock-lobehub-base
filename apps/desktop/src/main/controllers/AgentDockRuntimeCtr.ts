@@ -104,7 +104,7 @@ export default class AgentDockRuntimeController extends ControllerModule {
     await this.prepare(id);
     const spec = specs[id];
     const root = path.join(hostCacheRoot(), id);
-    const env = { ...process.env, ...spec.env, AGENTDOCK_RUNTIME: id };
+    const env: NodeJS.ProcessEnv = { ...process.env, ...spec.env, AGENTDOCK_RUNTIME: id };
     if (spec.env?.HERMES_HOME) env.HERMES_HOME = path.join(root, spec.env.HERMES_HOME);
     const child = spawn(path.join(root, spec.executable), spec.args, {
       cwd: path.join(root, spec.cwd),

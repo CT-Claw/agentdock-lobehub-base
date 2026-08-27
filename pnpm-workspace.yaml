@@ -4,6 +4,7 @@ packages:
   - .
   - e2e
   - apps/desktop/src/main
+  - apps/desktop
   - apps/server
   - apps/share
   - apps/workbench

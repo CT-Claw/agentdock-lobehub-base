@@ -23,4 +23,10 @@ if (electronIs.dev()) {
     'userData',
     userDataOverride || path.join(app.getPath('appData'), 'lobehub-desktop-dev'),
   );
+} else if (process.platform === 'win32') {
+  // AgentDock is distributed as a portable four-file bundle. Keep LobeHub's
+  // durable account/session data beside the launcher on the removable drive;
+  // runtime extraction and high-churn caches are handled by the runtime glue.
+  const bundleRoot = process.env.PORTABLE_EXECUTABLE_DIR || path.dirname(process.execPath);
+  app.setPath('userData', path.join(bundleRoot, 'AgentDock-data'));
 }
